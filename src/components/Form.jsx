@@ -2,13 +2,13 @@ import React from "react";
 import { useState } from "react";
 
 export default function Form({ tasks, addTasks }) {
-  const [task, addTask] = useState("");
+  // const [task, addTask] = useState("");
+  const [task, addTask] = useState({ name: "", done: false });
 
   function handleSubmit(e) {
     e.preventDefault();
-     if (!task.trim()) return;
     addTasks([...tasks, task]);
-    addTask("");
+    addTask({ name: "", done: false });
   }
   return (
     <div>
@@ -21,8 +21,8 @@ export default function Form({ tasks, addTasks }) {
           type="text"
           placeholder="Add your task..."
           className="flex-1 bg-transparent outline-none text-gray-700 placeholder:text-gray-400"
-          onChange={(e) => addTask(e.target.value)}
-          value={task}
+          onChange={(e) => addTask({ name: e.target.value, done: false })}
+          value={task.name}
         />
 
         <button
